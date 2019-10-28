@@ -1,5 +1,5 @@
 import sys
-import Main_menu
+import MainMenu
 
 app = Main_menu.QApplication(sys.argv)
 main_window = Main_menu.Main_menu()
