@@ -1,2 +1,2 @@
 # Game_antology_on_minimal
-EEEEE
+let's chek
