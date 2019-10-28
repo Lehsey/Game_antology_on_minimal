@@ -1,2 +1,7 @@
 # Game_antology_on_minimal
-let's chek
+1 оболочка
+
+2 игры :
+  ним
+  поздемелье
+  
