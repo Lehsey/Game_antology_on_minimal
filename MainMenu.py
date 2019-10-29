@@ -1,5 +1,8 @@
+import os
+import sys
 from PyQt5 import QtWidgets as widget
 
+from Search import root
 
 class MainMenu(widget.QWidget):
     def __init__(self):
@@ -43,10 +46,10 @@ class MainMenu(widget.QWidget):
     
     def setupButtons(self):
         self.records_button = widget.QPushButton('Рекорды', self)
-        # self.records_button.clicked.connect(self.records)
+        # self.records_button.clicked.connect(self.run)
         
         self.play_button = widget.QPushButton('Играть')
-        # self.play_button.clicked.connect(self.close)
+        self.play_button.clicked.connect(self.run)
     
     def setupGrid(self):
         self.grid = widget.QVBoxLayout()
@@ -71,3 +74,14 @@ class MainMenu(widget.QWidget):
         self.grid.addWidget(self.buttons_layout)
         
         self.setLayout(self.grid)
+    
+    def run(self):
+        game = self.games.checkedButton()
+        if game:
+            os.startfile(root(game.text()))
+
+
+app = widget.QApplication(sys.argv)
+game = MainMenu()
+game.show()
+sys.exit(app.exec())
