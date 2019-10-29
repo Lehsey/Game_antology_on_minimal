@@ -1,7 +1,9 @@
 import sys
+from PyQt5.QtWidgets import QApplication
+
 import MainMenu
 
-app = Main_menu.QApplication(sys.argv)
+app = QApplication(sys.argv)
 main_window = MainMenu.MainMenu()
 main_window.show()
 sys.exit(app.exec())
