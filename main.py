@@ -1,7 +1,8 @@
 import sys
-import Main_menu
+import MainMenu
+# сновной файл запуска
 
-app = Main_menu.QApplication(sys.argv)
-main_window = Main_menu.Main_menu()
+app = MainMenu.widget.QApplication(sys.argv)
+main_window = MainMenu.MainMenu()
 main_window.show()
-sys.exit(app.exec())
+sys.exit(app.exec_())

@@ -1,4 +1,14 @@
+# основной цикл, главное окно
+from itertools import product
+
+import psutil
+import os
+import sys
 from PyQt5 import QtWidgets as widget
+
+from Search import root, proc
+from text_games.Nim3 import Nim3
+
 
 
 class MainMenu(widget.QWidget):
@@ -8,7 +18,8 @@ class MainMenu(widget.QWidget):
     
     def setupUI(self):
         self.setWindowTitle('Python Game Antology vol.0')
-        
+
+        # установка основных частей
         self.setupTextGames()
         self.setupGraphicGames()
         self.setupGamesGroup()
@@ -17,7 +28,7 @@ class MainMenu(widget.QWidget):
         
         self.setFixedSize(self.sizeHint())
     
-    def setupTextGames(self):
+    def setupTextGames(self): # Установка частей для текстовых игр
         self.text_games = widget.QWidget()
         self.text_games_grid = widget.QVBoxLayout(self.text_games)
         
@@ -27,7 +38,7 @@ class MainMenu(widget.QWidget):
         self.text_games_grid.addWidget(self.nim)
         self.text_games_grid.addWidget(self.dungeon)
     
-    def setupGraphicGames(self):
+    def setupGraphicGames(self): # Установка частей для графичеких игр
         self.graphic_games = widget.QWidget()
         self.graphic_games_grid = widget.QVBoxLayout(self.graphic_games)
         
@@ -35,18 +46,18 @@ class MainMenu(widget.QWidget):
         
         self.graphic_games_grid.addWidget(self.progress)
     
-    def setupGamesGroup(self):
+    def setupGamesGroup(self):  # Установка группы кнопок выбора игр
         self.games = widget.QButtonGroup(self)
         self.games.addButton(self.nim)
         self.games.addButton(self.dungeon)
         self.games.addButton(self.progress)
     
-    def setupButtons(self):
+    def setupButtons(self): # установка кнопок "Играть" и "Рекорды"
         self.records_button = widget.QPushButton('Рекорды', self)
-        # self.records_button.clicked.connect(self.records)
+        # self.records_button.clicked.connect(self.run)
         
         self.play_button = widget.QPushButton('Играть')
-        # self.play_button.clicked.connect(self.close)
+        self.play_button.clicked.connect(self.run)
     
     def setupGrid(self):
         self.grid = widget.QVBoxLayout()
@@ -71,3 +82,20 @@ class MainMenu(widget.QWidget):
         self.grid.addWidget(self.buttons_layout)
         
         self.setLayout(self.grid)
+    
+    def run(self):
+        game = self.games.checkedButton().text()
+        if game == 'Ним':
+            self.nim = Nim3()
+            self.nim.show()
+
+            
+
+        
+
+
+
+app = widget.QApplication(sys.argv)
+game = MainMenu()
+game.show()
+sys.exit(app.exec_())
